@@ -1,0 +1,257 @@
+#day 1#
+
+##0.familiar with the OS(ubuntu)##
+
+##1.git study##
+
+    git install:
+
+	$sudo apt-get install git-core openssh-server openssh-client
+	$sudo apt-get install git-core git-gui git-doc
+
+    initialization of global vars:
+
+	$git config --global user.name="name"
+	$git config --global user.email="email"
+	$git config --global core.editor emacs
+
+    some basic git command:
+
+    git init
+    git statusa
+    git add
+    git commit
+    git branch
+    git diff
+    git clone:
+
+	$git clone git://github.com/schacon/grit.git
+
+##2.markdown study##
+
+    markdown basic grammar
+
+##3.zsh install
+
+    there r many kinds of shell,zsh is the last one u'll ever need.
+
+    install command: 
+   
+	$undo apt-get intall zsh
+
+    zsh config:
+
+    TAB command completion
+
+	%autoload -U compinit
+	%compinit
+
+    select the prompt:
+
+	%autoload -U promptinit
+	%promptinit
+
+    automation of the cd command:
+
+	%setopt autocd
+
+-------------------------------------------------
+#day 2
+
+##1.git study##
+
+    try git/code school
+    more learn about git basic command
+    git merge strategy:fast forward and 递归
+
+##2.underscorejs##
+
+    begin the collection
+
+--------------------------------------------------------------
+#day 3#
+
+##1.git study##
+
+	建立本地shell和github的关系:
+	首先要建立一个库test，并初始化：
+
+	cd test
+	git init
+
+	然后建立本地shell和远程库之间的联系：有两种方法
+	第一种http：
+
+	git remote add origin https://github.com/maixiaohai/mydocuments.git
+
+	第二种ssh：
+
+	git remote add origin git@github.com:maixiaohai/mydocuments.git
+
+	第一种方法需要每次都输入github的ursername和password
+	第二种方法需要创建密钥，具体方法如下：
+
+	cd ~/.ssh
+	ls
+	mkdir key_backup
+	cp id_rsa* key_backup
+	rm id_rsa*
+	ssh-keygen -t rsa -C "zhangxu@admaster.com.cn"
+	sudo apt-get install xclip
+	xclip -sel clip < ~/.ssh/id_rsa.pub
+
+	再进入github粘贴即可。
+	设置keygen时，输入enter键（在回车中会提示你输入一个密码，这个密码会在你提交项目时使用，如果为		空的话提交项目时则不用输入。这个设置是防止别人往你的项目里提交内容。）	
+
+##2.oh my zsh install##
+
+	automatic install command:
+	curl -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | sh
+	cd test
+	git remote
+
+##3.git配色##
+
+	%git congfig --global color.ui true
+
+##4.ruby koans##
+
+	begin,start study of ruby,use irb
+	question about Nilclass, NoMethodError
+	Hackety Hack(try)
+
+--------------------------------------------------------------------------------------------------------------
+#day 4#
+
+##1.git study##
+
+	git clone --bare XX XX 克隆裸库，有什么用？？
+	git commit --amend  撤销刚才的提交操作
+]):
+##2.js##
+
+	“==”和“===”的区别：前者若两边的量类型不同，会自动转换，后者则不
+
+------------------------------------------------------------------------------------------------------------------------------
+#day 5#
+
+##1.ruby koans##
+
+	assert  断言，用于测试，发现程序错误。
+	assert_equal(expected,actual,[message])  用等号来判定actual和expected是否相等assert
+	assert_raise(Exception,...){block}预期block将会引发参数列出的一个异常，如NoMethodError,TypeError,NameError
+	assert_match(regexp,string,[message])  预期string符号正则表达式regexp
+	assert_respond_to(obj,message,[message])   预期obj能够响应message
+
+	条件语句有三种
+	（1）if elsif else end
+	（2）unless else end
+	（3）case when when else end
+
+	循环体有三种
+	（1）while  end
+	（2）for in（range）   end
+	（3）XX.each do...   end
+	处理循环的关键字：break(跳出循环),redo（重复当前循环周期）,next（直接跳到下一个循环周期）,retry（重复整个迭代循环操作）
+
+	Class->Module->Object->nil
+
+	定义属性的4个方法：attr、attr_reader、attr_writer、attr_accessor
+
+	文件所在路径最好不要有中文，否则可能会出现编码错误。
+
+-----------------------------------------------------------------------------------------------------------------
+#day 6#
+
+##1.hadoop install##
+
+	需要先安装JAVA
+
+##2.underscorejs##
+
+	（1）_bind方法：改变默认的function中的this的指向。
+	例子（自带）：var func=function(greeting){
+	//this指向的是bind的第二个参数
+	//greeting是bind的第三个参数
+	return greeting+':'+this.name
+	};
+
+	var newfunc=_.bind(func,{name:'moe'},'hi');
+
+	func();
+
+	（2）_.bindAll方法：将一个对象中所有的成员函数的this都指向这个对象。
+
+---------------------------------------------------------------------------------------------------------------------------------
+#day 7#
+
+##hadoop install##
+
+      **1.JAVA install 问题，尝试了几种都失败了，最后使用成功的安装代码：**
+	
+	sudo add-apt-repository ppa:webupd8team/java
+	sudo apt-get update(此步会显示什么公钥错误之类的)
+	sudo apt-get install oracle-java6-installer
+      保存文件jdk-6u43-linux-x64.bin 大概需10多分钟。
+      然后显示：
+      在处理时有错误发生：
+       oracle-java7-installer
+       E: Sub-process /usr/bin/dpkg returned an error code (1)
+       但是运行java -version，会显示安装成功后的java版本1.6.0_43
+       
+       配置java环境变量：
+
+	sudo gedit /etc/environment
+
+       在其中添加两行：
+       JAVA_HOME=/usr/lib/jvm/java-6-oracle
+       CLASSPATH=.:/usr/lib/jvm/java-6-oracle
+
+       **2.ssh install及建立ssh无密码登录本机**
+       sudo apt-get install ssh openssh-server
+       （1）转换成hadoop用户：
+       su - hadoop
+        （2）使用rsa方式创建ssh-key
+        ssh-keygen -t rsa -P ""
+        进入.ssh目录，将id_rsa.pub追加到authorized_keys授权文件（开始没有）
+        cd ~/.ssh
+        cat id_rsa.pub >> authorized_keys
+        （3）登录localhost及登出
+         ssh localhost
+         exit
+
+         **3.hadoop install**
+         下载地址：<http://www.fayea.com/apache-mirror/hadoop/common/hadoop-1.0.4/>
+          sudo cp hadoop-1.0.4.tar.gz /usr/local
+          cd /usr/local
+          sudo tar -zxf hadoop-1.0.4.tar.gz
+          sudo mv hadoop-1.0.4 hadoop
+
+          将hadoop文件夹属主用户设为hadoop
+          sudo chown -R hadoop:hadoop hadoop
+
+           打开文件进行配置
+           sudo gedit hadoop/conf/hadoop-env.sh
+           去掉#，改为export JAVA_HOME=/usr/lib/jvm/java-6-oracle
+
+            测试代码：
+	$ mkdir input
+	$ cp conf/*.xml input
+	$ bin/hadoop jar hadoop-examples-*.jar grep input output 'dfs[a-z.]+'
+	$ cat output/*
+
+--------------------------------------------------------------------------------------------------------------------------------
+
+       
+	
+            
+	
+
+
+
+	
+
+
+
+	
+
