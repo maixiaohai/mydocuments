@@ -24,13 +24,29 @@ require File.expand_path(File.dirname(__FILE__) + '/edgecase')
 # score([2,3,4,6,2]) => 0 points
 # score([3,4,5,3,3]) => 350 points
 # score([1,5,1,2,4]) => 250 points
-#
 # More scoring examples are given in the tests below:
 #
 # Your goal is to write the score method.
 
 def score(dice)
   # You need to write this method
+  total= 0
+  counter={}
+  dice.each do |num|
+    counter[num] ? counter[num] +=1 : counter[num]=1
+  end
+  counter.each do |key,value|
+    if value >=3
+       total += key==1 ? key*1000 : key*100
+       value -=3
+    end
+    if key==1 
+       total +=value*100
+    elsif key==5
+       total +=value*50
+    end
+   end
+   total
 end
 
 class AboutScoringProject < EdgeCase::Koan
