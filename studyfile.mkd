@@ -112,7 +112,7 @@
 
 ##3.git配色##
 
-	%git congfig --global color.ui true
+	%git config --global color.ui true
 
 ##4.ruby koans##
 
@@ -197,7 +197,7 @@
       在处理时有错误发生：
        oracle-java7-installer
        E: Sub-process /usr/bin/dpkg returned an error code (1)
-       但是运行java -version，会显示安装成功后的java版本1.6.0_43
+       但是运行java -version，会显示安装成功后的java版本1.6.0_43 (需要注意是使用 Oracle 的 Java 还是 OpenJDK 的 Java。Oracle 的 Java 在执行 java -version 后会显示 HotSpot 字样的。)
        
        配置java环境变量：
 
@@ -205,7 +205,7 @@
 
        在其中添加两行：
        JAVA_HOME=/usr/lib/jvm/java-6-oracle
-       CLASSPATH=.:/usr/lib/jvm/java-6-oracle
+       CLASSPATH=.:/usr/lib/jvm/java-6-oracle -- CLASSPATH 这个环境变量其实可以不设置的，再者这么设也貌似不太对
 
 **2.ssh install及建立ssh无密码登录本机**
 
@@ -241,6 +241,8 @@
 	cp conf/*.xml input
 	bin/hadoop jar hadoop-examples-*.jar grep input output 'dfs[a-z.]+'
 	cat output/*
+
+Hadoop 目前使用的是 0.20.X 版本的，1.0.X 和这个版本的 API 会有一部分不兼容，不过问题应该不大。建议将 Hadoop 的 bin 路径加到 $PATH 环境变量中去，以后使用会比较方便。
 
 --------------------------------------------------------------------------------------------------------------------------------
 #day 8(2013.3.13)#
