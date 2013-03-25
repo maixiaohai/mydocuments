@@ -1,0 +1,234 @@
+#day 11(3.18)#
+
+##python##
+
+*（1）python 最初*
+
+	start python on Linux os:
+	$python
+	leave python:
+	$quit()或者键盘输入ctrl+d
+
+*（2）基本概念*
+
+	数，python中有4种类型的数：整数，长整数，浮点数和复数。
+	字符串：''和""都可以指示字符串，三引号可以指示多行字符串，且可在其中自由使用单引号和双引号。
+	转义符：/，在一个字符串的行末出现单独一个反斜杠表示字符串在下一行继续。
+	标识符的命名：大小写区分、首字符必须是字母或下划线，其他为字母、数字或下划线。
+
+*（3）运算符和表达式*
+
+	**代表幂
+	//代表取整除
+
+*（4）控制流*
+
+	控制流语句：if、for、while
+
+	(1)if
+	if XX:(冒号意味着后面跟着一个语句块)
+	elif XX:
+	else:
+	(2)while  从句中可以使用else
+	（3）for in
+	ps：break和continue用法相同
+
+*（5）函数*
+
+	函数通过def关键字定义。如def sayhello():
+	默认参数值：在函数定义的形参名后加上赋值运算符（=）和默认值，从而给形参指定默认参数值
+	ps：只有在形参表末尾的那些参数可以有默认参数值
+	pass语句在Python中表示一个空的语句块
+	docstrings（文档字符串）：文档字符串的惯例是一个多行字符串，它的首行以大写字母开始，句号结尾。第二行是空行，从第三行开始是详细的描述。 强烈建议 你在你的函数中使用文档字符串时遵循这个惯例。
+	print printMax.__doc__来显示printMax函数里的文档字符串
+
+*（6）模块*
+
+	在其他程序中重用很多函数，需要编写模块，模块以.py结尾
+	import sys（用import语句输入sys模块）
+	.pyc文件：字节编译的文件，与Python变换程序的中间状态有关
+	from..import一般来说，避免使用，而用import语句
+	模块的__name__:当一个模块被第一次输入的时候，这个模块的主块将被运行。假如我们只想在程序本身被使用的时候运行主块，而在它被别的模块输入的时候不运行主块,使用模块的__name__
+	dir():使用内建的dir函数可以列出模块定义的标识符
+	del a（删除一个变量/名称）	
+
+*（7）数据结构*
+
+	python的数据结构——列表、元组和字典。
+	
+	列表可以修改，元组不可以修改
+	列表['xx','xy','csdd'],使用.append添加新元素
+	
+	元组('xy','xx','csdd'),使用new_zoo=('xx','xy',zoo)来添加新元素，因为它本身不可修改
+	元组的打印：print '%s is %d years old'%(name,age)
+
+	字典即键值对
+	标记：d = {key1 : value1, key2 : value2 }，只能使用不可变的对象（比如字符串）来作为字典的键
+	添加新元素：ab['key6']='value6'
+	删除元素：del ab['key5']
+	循环：for name, address in ab.items():
+
+	序列：序列的两个主要特点是索引操作符和切片操作符
+	shoplist[1:3]不包含3
+
+	mylist=shoplist #mylist和shoplist是同一个列表，shoplist的变动mylist都有
+	mylist=shoplist[:] #使用full slice来复制，此时shoplist的变动和mylist无关
+
+	字符串的方法：
+	name='zhangxu'
+	name.startswith('zha')看字符串是否以zha开头
+	name.find('xu')!=-1查找字符串中是否有xu
+
+	join的用法：
+	delimiter = '_*_'
+	mylist = ['Brazil', 'Russia', 'India', 'China']
+	print delimiter.join(mylist)
+
+*（8）面向对象的编程*
+
+	创建一个类：
+	class Person:            #use the keyword class
+	      pass                     #an empty block
+
+	对象的使用方法：
+	class Person:
+    	     def sayHi(self):     #sayHi方法没有任何参数，但仍然在函数定义时有self
+      	          print 'Hello, how are you?'
+
+	__init__方法：在类的一个对象被建立时，马上运行
+	def __init__(self, name):
+ 	       self.name = name
+
+	Python中所有的类成员（包括数据成员）都是公共的 ，所有的方法都是有效的 。
+	只有一个例外：如果你使用的数据成员名称以双下划线前缀比如__privatevar，Python的名称管理体系会有效地把它作为私有变量。
+
+	__del__方法：当对象消逝时，调用
+
+	继承方法：class Teacher(SchoolMember):  #类Teacher继承于SchoolMembers
+	ps:Python不会自动调用基本类的constructor，你得亲自专门调用它。
+
+*（9）输入/输出*
+
+	raw_input和print用于语句的输入和输出
+	f=file('xx.txt','w')写文件，后面也可以用'r',什么都不加，默认为r
+	line=f.readline()读文件的行
+	结束时close：f.close()
+
+	import cPickle a p.:可以使用更短的模块名
+	p.dump(srcf,dstf) #储存过程
+	p.load(dstf) #取储存过程
+
+*（10）异常*
+
+	使用try..except语句来处理异常。
+	把通常的语句放在try-块中，而把我们的错误处理语句放在except-块中。
+
+	引发异常：
+	raise ShortInputException()
+
+	try..finally:在读一个文件的时候，希望在无论异常发生与否的情况下都关闭文件
+
+*（11）os模块*
+
+	os.name字符串指示你正在使用的平台。比如对于Windows，它是'nt'，而对于Linux/Unix用户，它是'posix'。
+	os.getcwd()函数得到当前工作目录，即当前Python脚本工作的目录路径。
+	os.getenv()和os.putenv()函数分别用来读取和设置环境变量。
+	os.listdir()返回指定目录下的所有文件和目录名。
+	os.remove()函数用来删除一个文件。
+	os.system()函数用来运行shell命令。
+	os.linesep字符串给出当前平台使用的行终止符。例如，Windows使用'\r\n'，Linux使用'\n'而Mac使用'\r'。
+	os.path.split()函数返回一个路径的目录名和文件名。
+--------------------------------------------------------------------------------------------------------------
+#day 12(3.19)#
+
+##python koans##
+
+	half finished
+
+##databank##
+	
+	了解文档流程，需实际操作
+
+---------------------------------------------------------------------------------------------------------------------------------
+#day 13(3.21)#
+
+##Java 正则表达式##
+
+	句点符号：如t.n，表示以t开头，以n结尾的字符串
+	[]:如t[aetd]n，表示匹配tan，ten，ttn，tdn
+	“或”符号：如t（a|e|oo）n，表示匹配tan，ten，toon
+
+	表示匹配次数的符号：
+	*  0次或多次
+	+  1次或多次
+	？ 0次或1次
+	{n} 恰好n次
+	{n,m} 从n次到m次
+
+	[0-9]{3}表示前三个是数字，[A-Z]{2}表示后两个是字母
+	[0-9]{1,3}表示1到3个数字#day 13(3.21)#
+
+	“否”符号：^
+	[^x]不想匹配的字符
+
+	\s表示空白字符，包括Tab字符
+	（）表示提取的部分，如([a-z]+) \s+ [0-9]{1,2}，表示从月日中提取月份
+
+	常用符号：
+	\d   [0-9]
+	\D  [^0-9]
+	\w  [A-Z0-9]
+	\W  [^A-Z0-9]
+
+##databank##
+	
+	cli.py：用于将命令行中的选项和参数提取成为一个dict
+	import getopt  #用来抽取命令行选项和参数
+	getopt函数的格式是opts,args=getopt.getopt ( sys.argv[1:], "短选项", [长选项列表] )
+	opts是一个参数选项及其value的元组，args是一个除去有用参数外其他的命令行输入
+	遍历opts便可以获取所有的命令行选项及参数
+
+	api.py：用于通过命令和要加载的总曝光量来预估计算量
+	bottle：python的一个简单web框架
+
+	config.py:读配置文件
+	yaml,类xml，将配置写成config.yaml脚本
+	通过yaml.load和yaml.dump来实现使用
+
+	mac.py：读取mac.csv的数据并处理
+	具体数据代表？adjust
+
+##python koans##
+
+	almost finish
+	
+------------------------------------------------------------------------------------------------------------------------------------------------------	
+#day 14(3.22)#
+	
+##databank##	
+            
+	command.py
+	import re      #引入正则表达式模块
+	import urllib #引入上层接口模块，使www和ftp上的数据读取本地化（get_current_campaigns）
+	import json   #JavaScript Object Notation)，一种轻量级的数据交换格式（get_current_campaigns）
+	re.sub(pattern,repl,string[,count,flags]):用repl代替string中的pattern
+
+##test ip2region##
+
+	We have two files,one stores the ips,one stores the data of map from ips to regions.I will program to	
+	find regions of the given ips .
+	
+	read(),readline(),readlines():
+	.read()每次读取整个文件，用于将文件内容放到一个字符串变量中；
+	.readline()每次只读取一行，比readlines慢；
+	.readlins()自动将文件内容分析成一个行的列表，可由for...in...结构来处理。
+----------------------------------------------------------------------------------------------------------------------------------------------------------
+	
+
+
+	
+
+
+
+	
+
