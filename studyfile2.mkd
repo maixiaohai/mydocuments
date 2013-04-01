@@ -223,12 +223,167 @@
 	.readline()每次只读取一行，比readlines慢；
 	.readlins()自动将文件内容分析成一个行的列表，可由for...in...结构来处理。
 ----------------------------------------------------------------------------------------------------------------------------------------------------------
+#day 15(3.25)#
+
+##test ip2region（python）##
+
+	for line in f.readlines()里面line是string，可以进行join和split的操作
+	list则不可以，但是list的item若为string则可以对item用join和split
+	.append是list的操作
+	对于读出来的数据，应当注意类型，int还是str，不符合要求的可用int（）或str（）来进行强制转换
+	item是list的自带用法，.items是dict的自带用法，可用于对key和alue进行操作
+	字典嵌套字典的实例：
+	tmp=list()
+	tmp1={}
+	regionback={}
+	while i<(len(tmp)):
+	      for item in tmp[i+1]:
+	              item=item.split(',')
+	              tmp1[item[0],item[1]]=item[2]
+	       regionback[tmp[i][0]]=tmp1
+	       i +=3
+
+##wikicourse##
+
+	use HTML and some own language（double click for editing）
+	标题：
+	=headline=
+	==sencondheadline== 以此类推
+	lists：
+	" *"代表实心圆点，"  *"代表空心圆点
+	强调： ''斜体''; '''粗体'''; '''''粗斜体'''''; ___下划线___;
+	table:
+	|| 1 || 2 || 3 ||最简单的表格一行三列
+	|| <|2> 2lines || line1 ||   #2lines合并两行为一行
+	|| line2 ||
+	 links：
+	http://xx.xx/    #直接输入
+	[[http://moinmoin.in/|MoinMoin Wiki]]    #显示后者，链接前者
+	{{website/xx.png}}        #图片
+	附件：
+	{{attachment:foto.jpg}}  #显示图片
+	[[attachment:XX.txt]]       #XX.txt 点击下载
+	some symbols:<https://116.213.213.105/WikiCourse/19%20Symbols?action=print&media=projection>
+	{{{}}}:显示代码行
+	 {{{#!highlight python
+	 def hello(name):
+	     print "Hello %s" % name
+	 }}}
+
+-------------------------------------------------------------------------------------------------------------------------------------------------
+#day 16(3.26)#
+
+##Java##
+
+	Java编码规范(PDF)：<http://www.oracle.com/technetwork/java/codeconv-138413.html>
+	println("xx"):会在XX最后面插入换行
+	一般来说，测试用的类会带有main（），一般命名为"受测类名称"+TestDrive
+	任何变量只要加上public、static和final，基本上都会变成全局变量取用的常数。
+	同时提交很多个类时，可打包成.jar文件
+	命令为：jar cvfe des.jar 程序主类 -C 源字节码文件夹
+
+	java的primitive主数据类型：
+	变量的声明：variables must have a type and a name
+	主数据类型：整数（byte,short,int ,long） 浮点（float,double） boolean(true,false) char(0~65535)
+`	ps:float f=32.5f  #f如果不加，会被当作double处理
+	变量的命名：
+	（1）名称必须以字母、下划线或$开头
+	（2）除了第一个字符，其余都可用数字
+	（3） keep away from keyword
+
+	java的引用：对象引用只是个变量值，它是取得特定对象的位表示法。
+	数组是一个对象
+	int[] num = new int[7]; #创建一个整数类型的数组num，大小为7
+	Dog[] pets = new Dog[3];  #创建类型为Dog的array，长度为3
+	pets[0] = new Dog();    #使用前一定要初始化
 	
+##java koans##
 
+	运行.sh脚本时，应该用zsh run.sh命令	
+-------------------------------------------------------------------------------------------------------
+#day 17（3.27）#
 
+##java koans ##
 	
+	first stop----aboutassertions之class's assertSameInstance,change to:
+	@Koan()
+	public void assertSameInstance(){
+	             Integer same = new Integer(1);
+	             Integer sameReference = same;
+	             assertSame(same, sameReference);
+	}
 
-
-
+	second stop------long数据后面要加l，否则会报错
+	short部分则要用显式转换 (short) data,其他类推
+	java的数据表示要求严格！
 	
+##head first java##
 
+	封装的基本原则：将实例变量标记为private，将getter和setter标记为public
+	实例变量未初始化时的值：
+	integer：0；float：0.0；booleans：false；references：null
+	变量的比较：
+	主数据类型或引用的比较用==，equlas（）用来判断两个对象是否意义上相等。
+--------------------------------------------------------------------------------------------------------------------------------------	
+#day 18（3.28上午）#
+
+##java koans##
+
+	half finish
+
+##head first java##
+
+	编写真实代码前要先写测试码
+	Integer.parseInt("string")  //将字符串转换成int，Integer是java的内建类，parseInt是方法，将string解析
+	ps:只会在所给String为数字时起作用
+	java for循环的两种格式：
+	（1）传统格式：for(int i=0;i < 10; i++){}
+	（2）新增格式：for(int element : arrays ){}，element的类型与arrays的元素类型相同
+	Math.random()返回double型，介于0～1之间，要定义为int型需要加强制转换int()
+
+	ArrayList基本操作：(import java.util.ArrayList)
+	add(Object elem),向list中加入对象参数
+	remove(int index)，在索引参数中移除对象
+	remove(Object elem)，移除该对象
+	contains(Object elem)，查看是否有某对象参数
+	isEmpty(),size()
+	indexOf(Object elem)，返回对象参数的索引，没有返回-1
+	get(int index)，返回当前索引参数的对象
+	example：
+	ArrayList<Egg> myList = new ArratList<Egg>();
+	Egg s = new Egg();
+	myList.add(s);
+	Egg w = new Egg();
+	myList.add(w);
+	int idx = myList.indexOf(s); //返回0
+	myList.remove(s);
+	
+	除了java.lang.String和java.lang.System的类，其余的都要import
+-----------------------------------------------------------------------------------------------------------------------------------------------------
+#day 19（3.29下午）#
+
+##java koans##
+
+	关于java字符串：
+	Java将字符串作为String类型对象来处理，处理起来有很多高级功能
+	（1）length()取得字符串长度；
+	（2）substring()用法：String substring(int startIndex，int endIndex)第二个参数可以没有；
+	（3）replace()，两种用法，一种是替换字符串中某部分："little".replace(i,o)；
+	一种是字符串直接替换，String replace(CharSequence original,CharSequence replacement)
+	（4）concat()，连接两个字符串
+	（5）trim()，去掉首位的空格；
+	（6）charAt()，取一个字符；getChars()，取多个字符
+	（7）split和append
+
+	java  HashCode方法：
+	hash code是一种编码方式，在Java中，每个对象都会有一个hashcode，Java可以通过这个hashcode来识别一个对象。
+	int类型，Java 应用程序执行期间，在对同一对象多次调用 hashCode 方法时，必须一致地返回相同的整数，前提是将对象进行 equals 比较时所用的信息没有被修改。
+	如果根据 equals(Object) 方法，两个对象是相等的，那么对这两个对象中的每个对象调用 hashCode 方法都必须生成相同的整数结果
+
+	regularExpression:
+	Pattern pat = Pattern.compile("[abc]{3}");  //一般需要用compile把正则规则编译成pattern
+	Matcher类的方法：
+	find():从头开始查找
+	start():上面的find必须返回true，start返回本次找到数据的第一个位置
+	end():返回本次找到数据的最后一个位置
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
