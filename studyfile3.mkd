@@ -1,0 +1,158 @@
+#day 20（4.1）#
+
+##Maven##
+
+	a java tool,基于项目对象模型(POM)，可以通过一小段描述信息来管理项目的构建，报告和文档的软件项目管理工具
+	download from <http://maven.apache.org/download.cgi>（最好使用aptitude search maven）
+	mv 到 /usr/local/
+	sudo tar -xvf apache-maven-3.0.5-bin.tar.gz
+	export M2_HOME=/usr/local/apache-maven-3.0.5  添加环境变量
+	export M2=$M2_HOME/bin
+	export PATH=$M2:$PATH
+	要确保有java环境，此时运行mvn --version来检测是否安装好
+
+##IDEA##
+
+	IDEA 全称 IntelliJ IDEA，是java语言开发的集成环境
+	download from<http://www.jetbrains.com/idea/download/index.html>
+	sudo cp ideaIC-12.0.4.tar.gz /usr/lib/
+	sudo tar -xvf ideaIC-12.0.4.tar.gz
+	环境变量设置：
+	（1）java_HOME，此步在java安装时已经完成
+	（2）add the idea-xxxx/bin directory to my PATH variable
+	export IDEA_HOME=/usr/lib/idea-IC-123.169
+	export IDEA=$IDEA_HOME/bin
+	export PATH=$IDEA:$PATH
+	idea.sh
+	
+##有关路径设置问题##
+
+	之前修改过/etc/profile  .profile  .bashrc
+	其实只要修改.zshrc
+
+##java##
+
+	三种方法防止某类被做出子类：
+	（1）存取控制
+	（2）加final修饰符
+	（3）让类拥有private的构造程序
+
+	override原则：
+	子类的覆盖方法要和父类的参数相同，而返回值也要是同一类型或该类型的子类，若参数类型不同，则需要使用overload方法
+	还有，不能降低方法的存取权限
+
+	抽象类：不应该被初始化的类可加abstract，定义为抽象类
+	作用：通过继承它来实现多态，后期绑定，可以为将来要实现的东西做好接口，实现重用性
+	java不允许多重继承，所以要使用接口，用interface来实现
+	public interface Pet {
+	     public abstract void play();
+	} //接口的定义
+	public class Dog extends Canine implements Pet {} //接口的实现（实现接口必须在某个类的继承下）
+	super.someMethod  //调用父类的方法
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+#day 21（4.2）#
+
+##RTB##
+	
+	基本构成：DSP（demand-side platform）、Adx(Ad Exchange)、DMP（DataManagementPlatform）
+	品友DSP的三个优势：
+	（1）专利保护的人群分析模型和数据库
+	（2）实时竞价的智能算法
+	（3）基于云计算的平台
+
+##java##
+
+	构造函数必须与类同名，没有返回类型且不会被继承，但是可以在创建新对象时执行
+	每个类可以有多个构造函数，它们通过参数来识别，包括顺序和类型
+	调用父类构造函数的唯一方法是使用super();且对super()的调用必须是构造函数的第一个语句
+	如果父类的构造函数带参数，则通过super(xx)传入,见下例：
+	public abstract class Animal {
+	     private String name;
+	     public String getName() {
+ 	          return name;
+	     }
+	     public Animal (String theName) {
+	          name =  theName;
+	     }
+	}
+
+	public calss Hippo extends Animal {
+	     public Hippo (String name) {
+	          super(name);
+	     }
+	}
+
+	public class MakeHippo {
+	     public static void main(String [] args) {
+	          Hippo h = new Hippo("Jenny");
+	          System.out.println(h.getName());
+	     }
+	}
+
+	this()用来从某类的构造函数调用同类的另一个构造函数，且必须为第一行语句，故和super不能兼容
+	
+	三种释放对象的引用：
+	（1）引用永久性离开它的范围
+	（2）引用被赋值到其他对象上
+	（3）直接将引用设定为null
+
+	静态方法没有实例变量，调用只需使用类的名称
+	final的变量代表你不能改变它的值，final的method代表你不能覆盖之，final的类代表你不能继承它
+	java中的常量是被同时标记为static和final的
+------------------------------------------------------------------------------------------------------------------------------------------------
+#day 22（4.3）#
+
+##databank command##
+
++ 一些基本的规定
+
+  	+ 除了跑VC,CV外，data-type是必要项，指明是view还是click
+
+  	+ type是指采集类型, type >= 300的数据是辅助监测数据，不参与一般的计算，因此平时跑数据的时候要加一条 type < 300 这个筛选条件
+
+	+ 需要指明output文件来存放结果，比如  --output=stable_12179_130201-130310.csv 
+
+	+ stable的命令一定要指明merge-above，也就是频次上限，stable的频次上限默认取3。类似的COUNT命令要指明count-by,DIST命令要指明dist-by,FREQ命令要指明unit,merge-above,SATU要指明time-interval等。
+
++ 例子：
+
+	项目id：12179；
+	时间：130201-130310；
+	需求：这个项目这段时间的分媒体分点位的stable 数据；
+	命令：./calc.py --command=STABLE --camp=12179 --date=130201-130310 --data-type=view --merge-above=3 --group-by=mediaid,spotid --filter="type < 300" --job-name=stable12179130201-130310 --output=stable_12179_130201-130310.csv 
+		
+##java##
+
+	primitive主数据类型的包装，例子：
+	int i = 265;
+	Interger iWrap = new Integer(i);  //传入primitive主数据类型给包装类的构造函数
+	int unWrapped = iWrap.intValue(); //解开包装
+	java5.0加入了autoboxing，自动完成类型转换
+
+	String转换成主数据类型：
+	String s = "2";
+	int a = Integer.parseInt(s);
+	doulbe d = Double.parseDouble("12.34");
+	boolean c = new Boolean("true").booleanValue();
+
+	主数据类型转换成String：
+	(1)double a = 23.1;
+	String doubleString = "" + a; //数字+现有的string
+ 	(2)String doubleString = Double.toString(a);  //使用Double类的静态方法
+
+	数字格式化：调用String.format()，类似printf的用法
+
+	日期相关：用当前日期Date，其余用Calendar
+	（1）Date
+	完整的日期与时间：%tc
+	只有时间：%t
+	周、月、日：
+	Date today = new Date();
+	String.format("%tA, %tB %td",today,today,today); 等同于String.format("%tA, %<tB %<td",today); 
+	（2）Calender
+	Calendar cal = Calendar.getInstance();
+
+	有关静态import的使用
+	import static java.lang.System.out;
+	这种方法到底需要不需要做规范，缺点是可读性变差，容易造成冲突，优点就是少打几行字，代码简洁
+--------------------------------------------------------------------------------------------------------------------------------------------------------
