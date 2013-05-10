@@ -15,7 +15,7 @@ public class CookieJob {
 	
  	
 	public void map(LongWritable key, Text value, OutputCollector<Text, Text> output, Reporter reporter) throws IOException {
-	    String line[] = value.toString().split(",");
+	    String line[] = value.toString().concat(",").split(",");
 	    String date = line[1];
 	    String cookie = line[0];
 
