@@ -50,7 +50,19 @@
 ; Your goal is to write the score method.
 
 (defun score (dice)
-  ; You need to write this method
+  (let ((score 0))
+    (loop for i from 1 to 6 do
+      (let ((times (count i dice)))
+        (when (>= times 3)
+          (case i
+             (1 (incf score 1000))
+             (otherwise (incf score (* i 100))))
+          (setf dice (remove i dice :count 3)))
+      )
+    )
+    (incf score (* (count 1 dice) 100))
+    (incf score (* (count 5 dice) 50))
+  )
 )
 
 (define-test test-score-of-an-empty-list-is-zero
