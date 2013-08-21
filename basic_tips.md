@@ -5,16 +5,16 @@
 
 * when IF encounter strings
 
-    ``IF(somestring, x, y)  
+    ``IF(somestring, x, y)``  
     what we want to see: somestring exits, return x, or, return y  
-    correct: IF(somestring='', y, x) ``
+    ``correct: IF(somestring='', y, x)``
 
 * ALTER 表结构（同时ADD多个字段的方法）
 
     因为每次使用ALTER时，会把原表复制一遍，所以尽量使用一个ALTER，添加多行字段，如下：
-    ``ALTER TABLE xxx
-      ADD `duv` int(10) NOT NULL DEFAULT '0' COMMENT '日独立uv',
-      ADD `goal_1_visits` int(10) NOT NULL DEFAULT '0' COMMENT '目标1完成访问数'；``
+    ``ALTER TABLE xxx``
+      ``ADD `duv` int(10) NOT NULL DEFAULT '0' COMMENT '日独立uv',``
+      ``ADD `goal_1_visits` int(10) NOT NULL DEFAULT '0' COMMENT '目标1完成访问数'；``
 
 ### 代码重构的基本方法list
 
