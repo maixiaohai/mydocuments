@@ -12,9 +12,32 @@
 * ALTER 表结构（同时ADD多个字段的方法）
 
     因为每次使用ALTER时，会把原表复制一遍，所以尽量使用一个ALTER，添加多行字段，如下：
+
     ``ALTER TABLE xxx``
       ``ADD `duv` int(10) NOT NULL DEFAULT '0' COMMENT '日独立uv',``
       ``ADD `goal_1_visits` int(10) NOT NULL DEFAULT '0' COMMENT '目标1完成访问数'；``
+
+* JOIN用法
+
+    JOIN：如果表中有至少一个匹配，则返回行  
+    LEFT JOIN：即使右表中没有匹配，也从左表返回所有的行   
+    RIGHT JOIN：即使左表中没有匹配，也从右表返回所有的行    
+    FULL JOIN： 只要其中一个表中存在匹配，就返回行    
+
+### nginx安装与配置
+
+* install
+
+    网上搜到很多方法，很复杂的样子，但是貌似只需要sudo apt-get install nginx
+
+* 配置
+  
+    修改siteweb（类似default的文件）root为site的具体位置，如/home/zhangxu/workspace/...  
+    server_name xx.xx.xx 此处需要修改/etc/hosts文件将localhost指向xx.xx.xx  
+    proxy_pass  http://58.215.168.172:8080/counter/
+    siteweb置入sites-available   
+    sudo ln -s /etc/nginx/sites-available/siteweb /etc/nginx/sites-enabled/siteweb(最好写绝对路径)
+    sudo service nginx reload
 
 ### 代码重构的基本方法list
 
