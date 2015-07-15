@@ -19,5 +19,6 @@ server = http.createServer (req, res)->
       res.write(chunk, 'binary')
     fReadStream.on 'end', ()->
       res.end()
-  
+# another way
+# fReadStream.pipe(res)  
 server.listen('8000')
