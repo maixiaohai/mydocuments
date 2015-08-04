@@ -4,7 +4,7 @@
 ;;some basic settings
 (setq inhibit-startup-message t)
 
-;;(add-to-list 'load-path “~/.emacs.d/”)
+(add-to-list 'load-path "~/.emacs.d/")
 ;;(add-to-list 'load-path “~/.emacs.d/config/”)
 
 (setq default-tab-width 2)
@@ -23,12 +23,27 @@
 (ido-mode t)
 (setq ido-enable-flex-matching);;enable fuzzy matching
 
-(add-to-list 'load-path "~/.emacs.d/config/autocomplete/")
-(require 'auto-complete-config)
-(add-to-list 'ac-dictionary-directories "~/.emacs.d/config/autocomplete//ac-dict")
-(ac-config-default)
+;; key bindings
+(when (eq system-type 'darwin) ;; mac specific settings
+  (setq mac-option-modifier 'alt)
+  (setq mac-command-modifier 'meta)
+  (global-set-key [kp-delete] 'delete-char) ;; sets fn-delete to be right-delete
+  )
+;; encoding for mac
+(setq utf-translate-cjk-mode nil) ; disable CJK coding/encoding (Chinese/Japanese/Korean characters)
+(set-language-environment 'utf-8)
+(set-keyboard-coding-system 'utf-8-mac) ; For old Carbon emacs on OS X only
+(setq locale-coding-system 'utf-8)
+(set-default-coding-systems 'utf-8)
+(set-terminal-coding-system 'utf-8)
+(unless (eq system-type 'windows-nt)
+ (set-selection-coding-system 'utf-8))
+(prefer-coding-system 'utf-8)
 
-(load-file "/home/zhangxu/.piglatin.el")
+(add-to-list 'load-path "~/.emacs.d/")
+(require 'auto-complete-config)
+(add-to-list 'ac-dictionary-directories "~/.emacs.d/ac-dict")
+(ac-config-default)
 
 (setq load-path (cons (expand-file-name "~/.emacs.d/") load-path))
 (require 'go-mode-load)
@@ -55,3 +70,7 @@
 
 
 
+
+(put 'upcase-region 'disabled nil)
+
+(put 'downcase-region 'disabled nil)
