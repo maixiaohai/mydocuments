@@ -33,8 +33,10 @@ add the following code:
     CDH="cdh4.5.0"
     export HADOOP_HOME="/Users/zhangxu/cloudera/${CDH}/hadoop"
     export HBASE_HOME="/Users/zhangxu/cloudera/${CDH}/hbase"
+    // jdk1.6
     export JAVA_HOME="/System/Library/Frameworks/JavaVM.framework/Versions/CurrentJDK/Home"
-    
+    // jdk1.7
+    export JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk1.7.0_79.jdk/Contents/Home"
     export PATH="${HADOOP_HOME}/bin:${HADOOP_HOME}/sbin:${HBASE_HOME}/bin"
     
 replace core-site.xml, hdfs-site.xml, mapred-site.xml, yarn-site.xml and hadoop-env.sh of `/Users/zhangxu/Library/cloudera/hadoop-2.0.0-cdh4.5.0/etc/hadoop/` with files of current directory
