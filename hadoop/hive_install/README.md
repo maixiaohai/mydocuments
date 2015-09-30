@@ -13,7 +13,7 @@ download tarballs, and unzip on path `/Users/username/Library/cloudera/apache-hi
     emacs ~/.zshrc
 add the following code:
 
-		export HIVE_HOME="/Users/username/Library/cloudera/apache-hive-1.0.1-bin"
+    export HIVE_HOME="/Users/username/Library/cloudera/apache-hive-1.0.1-bin"
     export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:${HADOOP_HOME}/bin:${HADOOP_HOME}/sbin:${HBASE_HOME}/bin:${HIVE_HOME}/bin"
     source ~/.zshrc
 
