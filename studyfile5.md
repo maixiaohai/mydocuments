@@ -133,9 +133,9 @@
 
 + 登录过程
 
-	ssh zhangxu@58.215.168.157
+	ssh zhangxu@xx.xxx.xxx.xxx
 	
-	密码：admaster
+	密码：xxxxxx
 
 	下载databank源码到home/zhangxu下
 
